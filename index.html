@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Compagnon Clinique - GINA 2025 (Asthme)</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="bg-light">
+
+<div class="container my-5">
+    <div class="text-center mb-4">
+        <h1 class="text-primary">Compagnon Clinique GINA 2025</h1>
+        <p class="lead">Guide de gestion de l'asthme pour adultes et adolescents (12+ ans)</p>
+        <div class="alert alert-warning small">
+            <strong>Avertissement:</strong> Cet outil est basé sur le rapport GINA 2025. Il est destiné à aider les professionnels de santé et ne remplace pas le jugement clinique.
+        </div>
+    </div>
+
+    <div class="row">
+        <!-- Formulaire de saisie -->
+        <div class="col-md-6 mb-4">
+            <div class="card shadow-sm">
+                <div class="card-header bg-primary text-white">
+                    <h5 class="mb-0">Évaluation du patient</h5>
+                </div>
+                <div class="card-body">
+                    <form id="asthmaForm">
+                        <!-- Traitement actuel -->
+                        <h6 class="text-secondary border-bottom pb-2">1. Traitement Actuel</h6>
+                        <div class="mb-3">
+                            <label class="form-label">Palier actuel (Étape GINA) :</label>
+                            <select id="currentStep" class="form-select">
+                                <option value="0">Aucun (Nouveau diagnostic)</option>
+                                <option value="1">Palier 1-2 (CSI-formotérol à la demande)</option>
+                                <option value="3">Palier 3 (MART faible dose / CSI-BALA)</option>
+                                <option value="4">Palier 4 (MART dose moyenne / CSI-BALA)</option>
+                                <option value="5">Palier 5 (Spécialiste / LAMA / Biologiques)</option>
+                            </select>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Voie de traitement (Track) :</label>
+                            <select id="currentTrack" class="form-select">
+                                <option value="1">Voie 1 (Privilégiée) : CSI-formotérol comme soulagement</option>
+                                <option value="2">Voie 2 (Alternative) : BACA comme soulagement</option>
+                            </select>
+                        </div>
+
+                        <!-- Contrôle des symptômes -->
+                        <h6 class="text-secondary border-bottom pb-2 mt-4">2. Contrôle des symptômes (4 dernières semaines)</h6>
+                        <div class="form-check mb-2">
+                            <input class="form-check-input symptom-check" type="checkbox" id="sympDay">
+                            <label class="form-check-label" for="sympDay">Symptômes diurnes > 2 fois/semaine ?</label>
+                        </div>
+                        <div class="form-check mb-2">
+                            <input class="form-check-input symptom-check" type="checkbox" id="sympNight">
+                            <label class="form-check-label" for="sympNight">Réveil nocturne dû à l'asthme ?</label>
+                        </div>
+                        <div class="form-check mb-2">
+                            <input class="form-check-input symptom-check" type="checkbox" id="sympReliever">
+                            <label class="form-check-label" for="sympReliever">Besoin de traitement de soulagement > 2 fois/semaine ?</label>
+                        </div>
+                        <div class="form-check mb-3">
+                            <input class="form-check-input symptom-check" type="checkbox" id="sympActivity">
+                            <label class="form-check-label" for="sympActivity">Limitation des activités due à l'asthme ?</label>
+                        </div>
+
+                        <!-- De-escalade -->
+                        <h6 class="text-secondary border-bottom pb-2 mt-4">3. Stabilité</h6>
+                        <div class="form-check mb-4">
+                            <input class="form-check-input" type="checkbox" id="wellControlled3Months">
+                            <label class="form-check-label text-success" for="wellControlled3Months">
+                                L'asthme est bien contrôlé depuis au moins 3 mois.
+                            </label>
+                        </div>
+
+                        <button type="button" class="btn btn-primary w-100" onclick="evaluateAsthma()">Générer la Recommandation</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <!-- Résultat de l'évaluation -->
+        <div class="col-md-6">
+            <div class="card shadow-sm h-100">
+                <div class="card-header bg-success text-white">
+                    <h5 class="mb-0">Recommandations Cliniques</h5>
+                </div>
+                <div class="card-body" id="resultArea">
+                    <div class="text-center text-muted mt-5">
+                        <p>Veuillez remplir le formulaire pour générer le plan de traitement basé sur GINA 2025.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="app.js"></script>
+</body>
+</html>
